@@ -1,9 +1,8 @@
 import React from "react";
 import { GetServerSideProps } from "next";
 import ReactMarkdown from "react-markdown";
-import Layout from "../../components/Layout";
 import Router from "next/router";
-import { PostProps } from "../../components/Post";
+import { PostProps } from "../../src/components/Post";
 import prisma from '../../lib/prisma'
 import { useSession } from "next-auth/react";
 
@@ -51,19 +50,18 @@ const Post: React.FC<PostProps> = (props) => {
   }
 
   return (
-    <Layout>
-      <div>
-        <h2>{title}</h2>
-        <p>By {props?.author?.name || "Unknown author"}</p>
-        <ReactMarkdown children={props.content} />
-        {!props.published && userHasValidSession && postBelongsToUser && (
-          <button onClick={() => publishPost(props.id)}>Publish</button>
-        )}
-        {userHasValidSession && postBelongsToUser && (
-          <button onClick={() => deletePost(props.id)}>Delete</button>
-        )}
-      </div>
-      <style jsx>{`
+    
+      <><div>
+      <h2>{title}</h2>
+      <p>By {props?.author?.name || "Unknown author"}</p>
+      <ReactMarkdown children={props.content} />
+      {!props.published && userHasValidSession && postBelongsToUser && (
+        <button onClick={() => publishPost(props.id)}>Publish</button>
+      )}
+      {userHasValidSession && postBelongsToUser && (
+        <button onClick={() => deletePost(props.id)}>Delete</button>
+      )}
+    </div><style jsx>{`
         .page {
           background: white;
           padding: 2rem;
@@ -83,8 +81,8 @@ const Post: React.FC<PostProps> = (props) => {
         button + button {
           margin-left: 1rem;
         }
-      `}</style>
-    </Layout>
+      `}</style></>
+ 
   );
 };
 
