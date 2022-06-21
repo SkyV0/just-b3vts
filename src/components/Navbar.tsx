@@ -18,11 +18,86 @@ import { FiHelpCircle, FiSearch, FiSettings } from 'react-icons/fi'
 import { Logo } from './Logo'
 import { Sidebar } from './Sidebar'
 import { ToggleButton } from './ToggleButton'
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { signOut, useSession } from "next-auth/react";
 
-export const Navbar = () => {
+export const Navbar: React.FC = () => {
   const isDesktop = useBreakpointValue({ base: false, lg: true })
   const { isOpen, onToggle, onClose } = useDisclosure()
+  const router = useRouter();
+  const isActive: (pathname: string) => boolean = (pathname) =>
+    router.pathname === pathname;
 
+  const {data: session, status} = useSession();
+  let left = (
+    <div className="left">
+      <Link href="/">
+        <a className="bold" data-active={isActive("/")}>
+          Feed
+        </a>
+      </Link>
+    </div>
+  );
+
+  let right = null;
+
+  if (status === 'loading') {
+    left = (
+      <div className="left">
+        <Link href="/">
+          <a className="bold" data-active={isActive("/")}>
+            Feed
+          </a>
+        </Link>
+      </div>
+    );
+    right = (
+      <div className="right">
+        <p>Validating session ...</p>
+      </div>
+    );
+  }
+
+  if (!session) {
+    right = (
+      <div className="right">
+        <Link href="/api/auth/signin">
+          <a data-active={isActive("/signup")}>Log in</a>
+        </Link>
+      </div>
+    );
+  }
+
+  if (session) {
+    left = (
+      <div className="left">
+        <Link href="/">
+          <a className="bold" data-active={isActive("/")}>
+            Feed
+          </a>
+        </Link>
+        <Link href="/drafts">
+          <a data-active={isActive("/drafts")}>My drafts</a>
+        </Link>
+      </div>
+    );
+    right = (
+      <div className="right">
+        <p>
+          {session.user.name} ({session.user.email})
+        </p>
+        <Link href="/create">
+          <button>
+            <a>New post</a>
+          </button>
+        </Link>
+        <button onClick={() => signOut()}>
+          <a>Log out</a>
+        </button>
+      </div>
+    );
+  }
   return (
     <Box as="nav" bg="bg-accent" color="on-accent">
       <Container py={{ base: '3', lg: '4' }}>
@@ -36,6 +111,8 @@ export const Navbar = () => {
                 <Button>Tasks</Button>
                 <Button>Bookmarks</Button>
                 <Button>Users</Button>
+                <Button>{left}</Button>
+                <Button>{right}</Button>
               </ButtonGroup>
             )}
           </HStack>
@@ -46,6 +123,7 @@ export const Navbar = () => {
                 <IconButton icon={<FiSettings fontSize="1.25rem" />} aria-label="Settings" />
                 <IconButton icon={<FiHelpCircle fontSize="1.25rem" />} aria-label="Help Center" />
               </ButtonGroup>
+              
               <Avatar boxSize="10" name="Christoph Winston" src="https://tinyurl.com/yhkm2ek8" />
             </HStack>
           ) : (
