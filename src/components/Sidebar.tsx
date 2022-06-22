@@ -36,10 +36,12 @@ export const Sidebar = () => (
           </InputGroup>
           <Stack spacing="1">
             <NavButton label="Home" icon={FiHome} />
-            <NavButton label="Dashboard" icon={FiBarChart2} aria-current="page" />
-            <NavButton label="Tasks" icon={FiCheckSquare} />
-            <NavButton label="Bookmarks" icon={FiBookmark} />
-            <NavButton label="Users" icon={FiUsers} />
+            <NavButton label="Profile" icon={FiBarChart2} aria-current="page" />
+            <NavButton label="Create" icon={FiBarChart2} aria-current="page" />
+            <NavButton label="Followers" icon={FiCheckSquare} />
+            <NavButton label="Following" icon={FiUsers} />
+            <NavButton label="Chat" icon={FiUsers} />
+            <NavButton label="Settings" icon={FiUsers} />
           </Stack>
         </Stack>
         <Stack spacing={{ base: '5', sm: '6' }}>

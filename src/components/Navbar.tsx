@@ -21,6 +21,7 @@ import { ToggleButton } from './ToggleButton'
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { signOut, useSession } from "next-auth/react";
+import { ColorModeSwitcher } from './ColorModeSwitcher'
 
 export const Navbar: React.FC = () => {
   const isDesktop = useBreakpointValue({ base: false, lg: true })
@@ -107,10 +108,7 @@ export const Navbar: React.FC = () => {
             {isDesktop && (
               <ButtonGroup variant="ghost-on-accent" spacing="1">
                 <Button>Home</Button>
-                <Button aria-current="page">Dashboard</Button>
-                <Button>Tasks</Button>
-                <Button>Bookmarks</Button>
-                <Button>Users</Button>
+                <Button aria-current="page">Profile</Button>
                 <Button>{left}</Button>
                 <Button>{right}</Button>
               </ButtonGroup>
@@ -125,6 +123,7 @@ export const Navbar: React.FC = () => {
               </ButtonGroup>
               
               <Avatar boxSize="10" name="Christoph Winston" src="https://tinyurl.com/yhkm2ek8" />
+          <ColorModeSwitcher justifySelf="flex-end" />
             </HStack>
           ) : (
             <>
