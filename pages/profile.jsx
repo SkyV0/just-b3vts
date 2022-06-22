@@ -1,4 +1,6 @@
 import { useUser, withPageAuthRequired } from '@auth0/nextjs-auth0';
+import Loading from '../src/components/Loading';
+import ErrorMessage from '../src/components/ErrorMessage';
 import {
   Avatar,
   Box,
@@ -267,5 +269,5 @@ export default function Profile() {
   </Box>
   ); 
   }
-  return <Button as="a" href="/api/auth/login">Login to view profile</Button>;
+  return <Button as="a" href="/api/auth/signin">Login to view profile</Button>;
 }
