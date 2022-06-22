@@ -1,6 +1,4 @@
 import { useUser, withPageAuthRequired } from '@auth0/nextjs-auth0';
-import Loading from '../src/components/Loading';
-import ErrorMessage from '../src/components/ErrorMessage';
 import {
   Avatar,
   Box,
@@ -20,7 +18,7 @@ import {
   Textarea,
 } from '@chakra-ui/react'
 import * as React from 'react'
-import Dropzone from '../src/components/Dropzone'
+import { Dropzone } from '../src/components/Dropzone'
 import { useForm } from 'react-hook-form'
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
