@@ -11,6 +11,8 @@ import {
 } from '@chakra-ui/react'
 import * as React from 'react'
 import { FiDownloadCloud } from 'react-icons/fi'
+import { images } from '../utils/_data'
+import { Gallery } from './Gallery'
 
 export const Content = () => (
   <Stack spacing={{ base: '8', lg: '6' }}>
@@ -35,7 +37,9 @@ export const Content = () => (
         <Card />
       </SimpleGrid>
     </Stack>
-    <Card minH="xs" />
+    <Card>
+     <Gallery images={images} />
+     </Card>
   </Stack>
 )
 
