@@ -6,7 +6,7 @@ import * as foundations from './foundations'
 export const theme: Record<string, any> = extendTheme({
   ...foundations,
   components: { ...components },
-  colors: { ...baseTheme.colors, brand: baseTheme.colors.blue },
+  colors: { ...baseTheme.colors, brand: baseTheme.colors.purple },
   space: {
     '4.5': '1.125rem',
   },

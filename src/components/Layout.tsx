@@ -3,7 +3,7 @@ import Head from 'next/head'
 import { Box, Container } from '@chakra-ui/react'
 import { Content } from './Content'
 import { Navbar } from './Navbar'
-
+import { Footer } from './Footer'
 
 type Props = {
   children?: ReactNode
@@ -23,10 +23,7 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => (
       <Content />
     </Container>
   </Box>
-    <footer>
-      <hr />
-      <span>I'm here to stay (Footer)</span>
-    </footer>
+    <Footer />
   </div>
 )
 
