@@ -22,6 +22,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { signOut, useSession } from "next-auth/react";
 import { ColorModeSwitcher } from './ColorModeSwitcher'
+import { NextChakraLink } from './NextChakraLink'
 
 export const Navbar: React.FC = () => {
   const isDesktop = useBreakpointValue({ base: false, lg: true })
@@ -60,15 +61,6 @@ export const Navbar: React.FC = () => {
     );
   }
 
-  if (!session) {
-    right = (
-      <div className="right">
-        <Link href="/api/auth/signin">
-          <a data-active={isActive("/signup")}>Log in</a>
-        </Link>
-      </div>
-    );
-  }
 
   if (session) {
     left = (
@@ -107,10 +99,15 @@ export const Navbar: React.FC = () => {
             <Logo />
             {isDesktop && (
               <ButtonGroup variant="ghost-on-accent" spacing="1">
-                <Button>Home</Button>
-                <Button aria-current="page">Profile</Button>
-                <Button>{left}</Button>
-                <Button>{right}</Button>
+                <Button>
+                <NextChakraLink href={"/"}>Home</NextChakraLink>
+                </Button>
+                <Button>
+                <NextChakraLink href={"/profile"}>Profile</NextChakraLink>
+                </Button>
+                <Button>
+                <NextChakraLink href={"/api/auth/signin"}>Log in</NextChakraLink>
+                </Button>
               </ButtonGroup>
             )}
           </HStack>

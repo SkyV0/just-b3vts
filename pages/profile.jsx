@@ -21,7 +21,6 @@ import {
 } from '@chakra-ui/react'
 import * as React from 'react'
 import Dropzone from '../src/components/Dropzone'
-import styled from 'styled-components'
 import { useForm } from 'react-hook-form'
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
