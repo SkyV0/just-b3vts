@@ -108,6 +108,9 @@ export const Navbar: React.FC = () => {
                 <Button>
                 <NextChakraLink href={"/api/auth/signin"}>Log in</NextChakraLink>
                 </Button>
+                <Button>
+                <NextChakraLink href={"/create"}>Create</NextChakraLink>
+                </Button>
               </ButtonGroup>
             )}
           </HStack>
