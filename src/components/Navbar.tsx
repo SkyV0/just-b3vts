@@ -20,7 +20,7 @@ import { Sidebar } from './Sidebar'
 import { ToggleButton } from './ToggleButton'
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { signOut, useSession } from "next-auth/react";
+import { signOut, signIn, useSession } from "next-auth/react";
 import { ColorModeSwitcher } from './ColorModeSwitcher'
 import { NextChakraLink } from './NextChakraLink'
 
@@ -39,7 +39,7 @@ export const Navbar: React.FC = () => {
         <Flex justify="space-between">
           <HStack spacing="4">
             <Logo />
-            {isDesktop && (
+            {session && isDesktop && (
               <ButtonGroup variant="ghost-on-accent" spacing="1">
                 <Button>
                 <NextChakraLink href={"/"}>Home</NextChakraLink>
@@ -48,7 +48,11 @@ export const Navbar: React.FC = () => {
                 <NextChakraLink href={"/profile"}>Profile</NextChakraLink>
                 </Button>
                 <Button>
-                <NextChakraLink href={"/api/auth/signin"}>Log in</NextChakraLink>
+                <NextChakraLink href={'/api/auth/signin'}>
+                  SignIn
+               </NextChakraLink>
+               <NextChakraLink href={'/api/auth/signout'}>
+             </NextChakraLink>
                 </Button>
                 <Button>
                 <NextChakraLink href={"/create"}>Create</NextChakraLink>
