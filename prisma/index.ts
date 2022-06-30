@@ -24,6 +24,38 @@ async function main() {
       })
     console.dir(allUsers, { depth: null })
 }
+const update = async () => {
+    const post = await prisma.post.update({
+        where: { id: 1},
+        data: { published: true }
+    })
+    console.log(post);
+}
+
+const filter = async () => {
+    const filteredPosts = await prisma.post.findMany({
+        where: {
+            OR: [{title: { contains: 'hello' } }, { content: { contains: 'hello' } }]
+        }
+    })
+}
+
+const findUniquePostsForUser = async () => {
+    const userPosts = await prisma.account
+        .findUnique({
+            where: { id: 1 },
+        })
+        .user()
+        .posts()
+    console.log(userPosts)
+}
+
+const deleteUser = async () => {
+    const deletedUser = await prisma.user.delete({
+        where: { email: 'sarah@prisma.io'}
+    })
+    console.log(deletedUser)
+}
 
 main()
   .catch((e) => {
@@ -32,3 +64,10 @@ main()
   .finally(async () => {
     await prisma.$disconnect()
   }) 
+
+update().catch((e) => {
+    throw e
+  })
+  .finally(async () => {
+    await prisma.$disconnect()
+  })
